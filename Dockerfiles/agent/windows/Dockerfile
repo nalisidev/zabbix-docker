@@ -19,11 +19,11 @@ ENV ZABBIX_USER_HOME_DIR="C:\zabbix" `
 
 ENV ZBX_USERPARAMETERDIR="${ZABBIX_USER_HOME_DIR}\user_scripts"
 
-LABEL org.opencontainers.image.title="Zabbix agent" `
+LABEL org.opencontainers.image.title="Netwatch agent" `
       org.opencontainers.image.authors="Alexey Pustovalov <alexey.pustovalov@zabbix.com>" `
-      org.opencontainers.image.vendor="Zabbix SIA" `
+      org.opencontainers.image.vendor="NETWATCH.AI" `
       org.opencontainers.image.url="https://zabbix.com/" `
-      org.opencontainers.image.description="Zabbix agent is deployed on a monitoring target to actively monitor local resources and applications" `
+      org.opencontainers.image.description="Netwatch agent is deployed on a monitoring target to actively monitor local resources and applications" `
       org.opencontainers.image.licenses="AGPL v3.0" `
       org.opencontainers.image.documentation="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" `
       org.opencontainers.image.version="${ZBX_VERSION}" `
@@ -46,7 +46,7 @@ RUN $env:PATH = [string]::Format('{0}\zabbix\sbin;{0}\zabbix\bin;', $env:SystemD
     `
     [Environment]::SetEnvironmentVariable('ZABBIX_USER_HOME_DIR', $env:ZABBIX_USER_HOME_DIR, [EnvironmentVariableTarget]::Machine); `
     `
-    Write-Host ('Verifying Zabbix agent {0} ...' -f $env:ZBX_VERSION); `
+    Write-Host ('Verifying Netwatch agent {0} ...' -f $env:ZBX_VERSION); `
     zabbix_agentd.exe -V;
 
 RUN Set-Location -Path $env:SystemDrive\.; `

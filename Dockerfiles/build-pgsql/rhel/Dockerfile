@@ -21,7 +21,7 @@ LABEL description="Zabbix build base for PostgreSQL based images" \
       release="${RELEASE}" \
       summary="Zabbix build base (PostgreSQL)" \
       url="https://www.zabbix.com/" \
-      vendor="Zabbix SIA" \
+      vendor="NETWATCH.AI" \
       version="${MAJOR_VERSION}" \
       io.k8s.description="Zabbix build base for PostgreSQL based images" \
       io.k8s.display-name="Zabbix build base (PostgreSQL)" \
@@ -32,7 +32,7 @@ LABEL description="Zabbix build base for PostgreSQL based images" \
       org.label-schema.name="zabbix-build-pgsql-rhel" \
       org.label-schema.url="https://zabbix.com/" \
       org.label-schema.vcs-ref="${VCS_REF}" \
-      org.label-schema.vendor="Zabbix SIA"
+      org.label-schema.vendor="NETWATCH.AI"
 
 ENV ZBX_SOURCES_DIR=/tmp/zabbix-${ZBX_VERSION} ZBX_OUTPUT_DIR=/tmp/zabbix-${ZBX_VERSION}-output \
     DB_TYPE=postgresql \

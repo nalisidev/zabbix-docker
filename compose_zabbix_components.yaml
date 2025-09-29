@@ -62,7 +62,7 @@ services:
    - net.ipv4.conf.all.send_redirects=0
 #   - net.ipv4.ping_group_range=0 1995
   labels:
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "server"
 
  server-mysql-db-init:
@@ -208,7 +208,7 @@ services:
    - net.ipv4.conf.all.send_redirects=0
 #   - net.ipv4.ping_group_range=0 1995
   labels:
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "proxy"
 
  proxy-sqlite3:
@@ -348,7 +348,7 @@ services:
   sysctls:
    - net.core.somaxconn=65535
   labels:
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "frontend"
    com.zabbix.webserver: "apache2"
 
@@ -442,7 +442,7 @@ services:
   sysctls:
    - net.core.somaxconn=65535
   labels:
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "frontend"
    com.zabbix.webserver: "nginx"
 
@@ -534,7 +534,7 @@ services:
   stop_grace_period: 5s
   labels:
    com.zabbix.description: "Zabbix agent"
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "agent"
 
  agent2:
@@ -586,7 +586,7 @@ services:
   stop_grace_period: 5s
   labels:
    com.zabbix.description: "Zabbix agent 2"
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "agent2"
 
  java-gateway:
@@ -623,7 +623,7 @@ services:
   stop_grace_period: 5s
   labels:
    com.zabbix.description: "Zabbix Java Gateway"
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "java-gateway"
 
  snmptraps:
@@ -668,7 +668,7 @@ services:
   stop_grace_period: 5s
   labels:
    com.zabbix.description: "Zabbix snmptraps"
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "snmptraps"
 
  web-service:
@@ -710,5 +710,5 @@ services:
   stop_grace_period: 5s
   labels:
    com.zabbix.description: "Zabbix web service"
-   com.zabbix.company: "Zabbix SIA"
+   com.zabbix.company: "NETWATCH.AI"
    com.zabbix.component: "web-service"

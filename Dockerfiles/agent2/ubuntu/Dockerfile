@@ -21,13 +21,13 @@ ENV ZBX_PERSISTENTBUFFERFILE="$ZABBIX_USER_HOME_DIR/buffer/agent2.db" \
     ZBX_USERPARAMETERDIR=${ZABBIX_USER_HOME_DIR}/user_scripts
 
 LABEL org.opencontainers.image.authors="Alexey Pustovalov <alexey.pustovalov@zabbix.com>" \
-      org.opencontainers.image.description="Zabbix agent 2 is deployed on a monitoring target to actively monitor local resources and applications" \
+      org.opencontainers.image.description="Netwatch agent is deployed on a monitoring target to actively monitor local resources and applications" \
       org.opencontainers.image.documentation="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" \
       org.opencontainers.image.licenses="AGPL v3.0" \
       org.opencontainers.image.source="${ZBX_SOURCES}" \
-      org.opencontainers.image.title="Zabbix agent 2" \
+      org.opencontainers.image.title="Netwatch agent" \
       org.opencontainers.image.url="https://zabbix.com/" \
-      org.opencontainers.image.vendor="Zabbix SIA" \
+      org.opencontainers.image.vendor="NETWATCH.AI" \
       org.opencontainers.image.version="${ZBX_VERSION}"
 
 STOPSIGNAL SIGTERM

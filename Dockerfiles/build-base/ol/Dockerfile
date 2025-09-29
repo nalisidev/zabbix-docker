@@ -15,7 +15,7 @@ LABEL org.opencontainers.image.authors="Alexey Pustovalov <alexey.pustovalov@zab
       org.opencontainers.image.licenses="AGPL v3.0" \
       org.opencontainers.image.title="Zabbix build base" \
       org.opencontainers.image.url="https://zabbix.com/" \
-      org.opencontainers.image.vendor="Zabbix SIA" \
+      org.opencontainers.image.vendor="NETWATCH.AI" \
       org.opencontainers.image.version="${ZBX_VERSION}"
 
 COPY ["conf/etc/yum.repos.d/oracle-epel-ol10.repo", "/etc/yum.repos.d/oracle-epel-ol10.repo"]

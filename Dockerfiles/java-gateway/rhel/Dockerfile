@@ -26,7 +26,7 @@ LABEL description="Zabbix Java Gateway performs native support for monitoring JM
       run="docker run --name zabbix-java-gateway -p 10052:10052 -d registry.connect.redhat.com/zabbix/zabbix-java-gateway-74:${ZBX_VERSION}" \
       summary="Zabbix Java Gateway" \
       url="https://www.zabbix.com/" \
-      vendor="Zabbix SIA" \
+      vendor="NETWATCH.AI" \
       version="${MAJOR_VERSION}" \
       io.k8s.description="Zabbix Java Gateway performs native support for monitoring JMX applications" \
       io.k8s.display-name="Zabbix Java Gateway" \
@@ -42,7 +42,7 @@ LABEL description="Zabbix Java Gateway performs native support for monitoring JM
       org.label-schema.usage="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" \
       org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.vcs-url="${ZBX_SOURCES}" \
-      org.label-schema.vendor="Zabbix SIA" \
+      org.label-schema.vendor="NETWATCH.AI" \
       org.label-schema.version="${ZBX_VERSION}"
 
 STOPSIGNAL SIGTERM

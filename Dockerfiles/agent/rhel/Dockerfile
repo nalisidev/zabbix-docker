@@ -22,21 +22,21 @@ ENV TERM=xterm \
 ENV ZBX_LOADMODULEPATH="${ZABBIX_USER_HOME_DIR}/modules" \
     ZBX_USERPARAMETERDIR=${ZABBIX_USER_HOME_DIR}/user_scripts
 
-LABEL description="Zabbix agent is deployed on a monitoring target to actively monitor local resources and applications" \
+LABEL description="Netwatch Agent is deployed on a monitoring target to actively monitor local resources and applications" \
       maintainer="alexey.pustovalov@zabbix.com" \
       name="zabbix/zabbix-agent-74" \
       release="${RELEASE}" \
       run="podman run --name zabbix-agent -p 10050:10050 -d registry.connect.redhat.com/zabbix/zabbix-agent-74:${ZBX_VERSION}" \
-      summary="Zabbix agent" \
+      summary="Netwatch Agent" \
       url="https://www.zabbix.com/" \
-      vendor="Zabbix SIA" \
+      vendor="NETWATCH.AI" \
       version="${MAJOR_VERSION}" \
-      io.k8s.description="Zabbix agent is deployed on a monitoring target to actively monitor local resources and applications" \
-      io.k8s.display-name="Zabbix Agent" \
+      io.k8s.description="Netwatch Agent is deployed on a monitoring target to actively monitor local resources and applications" \
+      io.k8s.display-name="Netwatch Agent" \
       io.openshift.expose-services="10050:10050" \
       io.openshift.tags="zabbix,zabbix-agent" \
       org.label-schema.build-date="${BUILD_DATE}" \
-      org.label-schema.description="Zabbix agent is deployed on a monitoring target to actively monitor local resources and applications" \
+      org.label-schema.description="Netwatch Agent is deployed on a monitoring target to actively monitor local resources and applications" \
       org.label-schema.docker.cmd="podman run --name zabbix-agent -p 10050:10050 -d registry.connect.redhat.com/zabbix/zabbix-agent-74:${ZBX_VERSION}" \
       org.label-schema.license="AGPL v3.0" \
       org.label-schema.name="zabbix-agent-rhel" \
@@ -45,7 +45,7 @@ LABEL description="Zabbix agent is deployed on a monitoring target to actively m
       org.label-schema.usage="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" \
       org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.vcs-url="${ZBX_SOURCES}" \
-      org.label-schema.vendor="Zabbix SIA" \
+      org.label-schema.vendor="NETWATCH.AI" \
       org.label-schema.version="${ZBX_VERSION}"
 
 STOPSIGNAL SIGTERM

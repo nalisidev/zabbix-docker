@@ -16,7 +16,7 @@ LABEL description="Prepared environment to build Zabbix components" \
       release="${RELEASE}" \
       summary="Zabbix build base" \
       url="https://www.zabbix.com/" \
-      vendor="Zabbix SIA" \
+      vendor="NETWATCH.AI" \
       version="${MAJOR_VERSION}" \
       io.k8s.description="Prepared environment to build Zabbix components" \
       io.k8s.display-name="Zabbix build base" \
@@ -27,7 +27,7 @@ LABEL description="Prepared environment to build Zabbix components" \
       org.label-schema.name="zabbix-build-base-rhel" \
       org.label-schema.url="https://zabbix.com/" \
       org.label-schema.vcs-ref="${VCS_REF}" \
-      org.label-schema.vendor="Zabbix SIA"
+      org.label-schema.vendor="NETWATCH.AI"
 
 COPY ["licenses", "/licenses"]
 

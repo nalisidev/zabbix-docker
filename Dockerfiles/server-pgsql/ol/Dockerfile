@@ -30,7 +30,7 @@ ENV ZBX_DB_NAME="dummy_db_name" \
 
 LABEL org.opencontainers.image.title="Zabbix server (PostgreSQL)" \
       org.opencontainers.image.authors="Alexey Pustovalov <alexey.pustovalov@zabbix.com>" \
-      org.opencontainers.image.vendor="Zabbix SIA" \
+      org.opencontainers.image.vendor="NETWATCH.AI" \
       org.opencontainers.image.url="https://zabbix.com/" \
       org.opencontainers.image.description="Zabbix server with PostgreSQL database support" \
       org.opencontainers.image.licenses="AGPL v3.0" \

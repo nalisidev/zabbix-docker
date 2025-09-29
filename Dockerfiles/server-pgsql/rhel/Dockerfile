@@ -37,7 +37,7 @@ LABEL description="Zabbix server with PostgreSQL database support" \
       run="docker run --name zabbix-server --link postgresql:pgsql-server -p 10051:10051 -d registry.connect.redhat.com/zabbix/zabbix-server-pgsql-74:${ZBX_VERSION}" \
       summary="Zabbix server (PostgreSQL)" \
       url="https://www.zabbix.com/" \
-      vendor="Zabbix SIA" \
+      vendor="NETWATCH.AI" \
       version="${MAJOR_VERSION}" \
       io.k8s.description="Zabbix server with PostgreSQL database support" \
       io.k8s.display-name="Zabbix server (PostgreSQL)" \
@@ -53,7 +53,7 @@ LABEL description="Zabbix server with PostgreSQL database support" \
       org.label-schema.usage="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" \
       org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.vcs-url="${ZBX_SOURCES}" \
-      org.label-schema.vendor="Zabbix SIA" \
+      org.label-schema.vendor="NETWATCH.AI" \
       org.label-schema.version="${ZBX_VERSION}"
 
 STOPSIGNAL SIGTERM

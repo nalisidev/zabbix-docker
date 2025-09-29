@@ -28,7 +28,7 @@ LABEL description="Zabbix web-interface based on Nginx web server with PostgreSQ
       run="docker run --name zabbix-web-nginx --link postgresql:pgsql-server --link zabbix-server:zabbix-server -p 80:80 -d registry.connect.redhat.com/zabbix/zabbix-web-pgsql-74-74:${ZBX_VERSION}" \
       summary="Zabbix web-interface based on Nginx web server with PostgreSQL database support" \
       url="https://www.zabbix.com/" \
-      vendor="Zabbix SIA" \
+      vendor="NETWATCH.AI" \
       version="${MAJOR_VERSION}" \
       io.k8s.description="Zabbix web-interface based on Nginx web server with PostgreSQL database support" \
       io.k8s.display-name="Zabbix Frontend (Nginx)" \
@@ -44,7 +44,7 @@ LABEL description="Zabbix web-interface based on Nginx web server with PostgreSQ
       org.label-schema.usage="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" \
       org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.vcs-url="${ZBX_SOURCES}" \
-      org.label-schema.vendor="Zabbix SIA" \
+      org.label-schema.vendor="NETWATCH.AI" \
       org.label-schema.version="${ZBX_VERSION}"
 
 STOPSIGNAL SIGTERM
