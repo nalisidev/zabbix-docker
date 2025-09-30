@@ -15,8 +15,8 @@ ARG CURL_VERSION=8.11.1
 
 ARG BUILD_ARCH=x64
 
-ARG MAJOR_VERSION=7.2
-ARG ZBX_VERSION=${MAJOR_VERSION}.10
+ARG MAJOR_VERSION=7.4
+ARG ZBX_VERSION=${MAJOR_VERSION}.2
 
 FROM ${OS_BASE_IMAGE} AS src
 
@@ -234,7 +234,8 @@ RUN Set-Location -Path $env:SystemDrive\.; `
     New-Item -ItemType directory -Path $env:BUILD_OUTPUT\zlib\lib | Out-Null; `
     Copy-Item $env:BUILD_SRC\zlib\*.h -Destination $env:BUILD_OUTPUT\zlib\include; `
     Copy-Item $env:BUILD_SRC\zlib\zlib.lib -Destination $env:BUILD_OUTPUT\zlib\lib; `
-    Copy-Item $env:BUILD_SRC\zlib\zlib.pdb -Destination $env:BUILD_OUTPUT\zlib\lib; `    nmake /S -f .\win32\Makefile.msc clean | Out-Null; `
+    Copy-Item $env:BUILD_SRC\zlib\zlib.pdb -Destination $env:BUILD_OUTPUT\zlib\lib; `
+    nmake /S -f .\win32\Makefile.msc clean | Out-Null; `
     Write-Host 'Zlib is ready...'; `
     `
     Write-Host 'Building OpenSSL library...'; `
@@ -246,6 +247,12 @@ RUN Set-Location -Path $env:SystemDrive\.; `
         no-tests `
         no-unit-test `
         no-capieng `
+        o-winstore `
+        no-srp `
+        no-gost `
+        no-dgram `
+        no-dtls1-method `
+        no-dtls1_2-method `
         --api=1.1.0 `
         --prefix=$env:BUILD_OUTPUT\openssl `
         --openssldir=$env:BUILD_OUTPUT\openssl_ssl; `
@@ -320,3 +327,4 @@ RUN Set-Location -Path $env:SystemDrive\.; `
     Move-Item -Path $env:BUILD_SRC\curl\builds\libcurl-vc$env:VS_BUILDTOOLS_VERSION-$env:BUILD_ARCH-release-static-ssl-static-zlib-static-sspi\ -Destination $env:BUILD_OUTPUT\curl; `
     Remove-Item -Path $env:BUILD_SRC\curl\builds\* -Force -Recurse; `
     Write-Host 'Curl is ready...';
+
