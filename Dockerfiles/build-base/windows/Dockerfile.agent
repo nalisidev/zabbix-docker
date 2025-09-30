@@ -15,8 +15,8 @@ ARG CURL_VERSION=8.11.1
 
 ARG BUILD_ARCH=x64
 
-ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG MAJOR_VERSION=7.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.10
 
 FROM ${OS_BASE_IMAGE} AS src
 
@@ -150,11 +150,11 @@ ENV ZBX_VERSION=$ZBX_VERSION `
     PCRE2_URL=$PCRE2_URL OPENSSL_URL=$OPENSSL_URL LIBMODBUS_URL=$LIBMODBUS_URL `
     ZLIB_URL=$ZLIB_URL CURL_URL=$CURL_URL
 
-LABEL org.opencontainers.image.title="Zabbix agent build base for Windows" `
+LABEL org.opencontainers.image.title="Netwatch agent build base for Windows" `
       org.opencontainers.image.authors="Alexey Pustovalov <alexey.pustovalov@zabbix.com>" `
       org.opencontainers.image.vendor="NETWATCH.AI" `
       org.opencontainers.image.url="https://zabbix.com/" `
-      org.opencontainers.image.description="Zabbix build base image contains all required packages to build Zabbix agent images" `
+      org.opencontainers.image.description="Zabbix build base image contains all required packages to build Netwatch agent images" `
       org.opencontainers.image.licenses="AGPL v3.0" `
       org.opencontainers.image.documentation="https://www.zabbix.com/documentation/${MAJOR_VERSION}/manual/installation/containers" `
       org.opencontainers.image.version="${ZBX_VERSION}"
@@ -173,7 +173,7 @@ RUN Set-Location -Path $env:SystemDrive\.; `
     [Environment]::SetEnvironmentVariable('BUILD_SRC', $env:BUILD_SRC, [EnvironmentVariableTarget]::Machine); `
     $env:BUILD_DEPS = [string]::Format('{0}\build_deps', $env:SystemDrive); `
     [Environment]::SetEnvironmentVariable('BUILD_DEPS', $env:BUILD_DEPS, [EnvironmentVariableTarget]::Machine); `
-     `
+    `
     # Create TEMP directory for ContainerAdministrator
     New-Item -ItemType Directory -Force -Path "C:\Users\ContainerAdministrator\AppData\Local\Temp" | Out-Null; `
     [Environment]::SetEnvironmentVariable('TEMP', 'C:\Users\ContainerAdministrator\AppData\Local\Temp', [EnvironmentVariableTarget]::Machine); `
@@ -234,8 +234,7 @@ RUN Set-Location -Path $env:SystemDrive\.; `
     New-Item -ItemType directory -Path $env:BUILD_OUTPUT\zlib\lib | Out-Null; `
     Copy-Item $env:BUILD_SRC\zlib\*.h -Destination $env:BUILD_OUTPUT\zlib\include; `
     Copy-Item $env:BUILD_SRC\zlib\zlib.lib -Destination $env:BUILD_OUTPUT\zlib\lib; `
-    Copy-Item $env:BUILD_SRC\zlib\zlib.pdb -Destination $env:BUILD_OUTPUT\zlib\lib; ` nmake /S -f .\win32\Makefile.msc clean | Out-Null; `
-    nmake /S -f .\win32\Makefile.msc clean | Out-Null; `
+    Copy-Item $env:BUILD_SRC\zlib\zlib.pdb -Destination $env:BUILD_OUTPUT\zlib\lib; `    nmake /S -f .\win32\Makefile.msc clean | Out-Null; `
     Write-Host 'Zlib is ready...'; `
     `
     Write-Host 'Building OpenSSL library...'; `
@@ -247,12 +246,6 @@ RUN Set-Location -Path $env:SystemDrive\.; `
         no-tests `
         no-unit-test `
         no-capieng `
-        no-winstore `
-        no-srp `
-        no-gost `
-        no-dgram `
-        no-dtls1-method `
-        no-dtls1_2-method `
         --api=1.1.0 `
         --prefix=$env:BUILD_OUTPUT\openssl `
         --openssldir=$env:BUILD_OUTPUT\openssl_ssl; `
