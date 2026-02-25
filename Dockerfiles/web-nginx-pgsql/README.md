@@ -14,7 +14,7 @@ Zabbix web interface is a part of Zabbix software. It is used to manage resource
 
 # Zabbix web interface images
 
-These are the only official Zabbix web interface Docker images. They are based on Alpine Linux v3.22, Ubuntu 24.04 (noble), CentOS Stream 10 and Oracle Linux 10 images. The available versions of Zabbix web interface are:
+These are the only official Zabbix web interface Docker images. They are based on Alpine Linux v3.23, Ubuntu 24.04 (noble), CentOS Stream 10 and Oracle Linux 10 images. The available versions of Zabbix web interface are:
 
     Zabbix web interface 6.0 (tags: alpine-6.0-latest, ubuntu-6.0-latest, ol-6.0-latest)
     Zabbix web interface 6.0.* (tags: alpine-6.0.*, ubuntu-6.0.*, ol-6.0.*)
@@ -148,23 +148,23 @@ The variable allows to hide Web server and PHP versions. By default, `on`.
 
 ### `ZBX_MAXEXECUTIONTIME`
 
-The varable is PHP ``max_execution_time`` option. By default, value is `300`.
+The variable is PHP ``max_execution_time`` option. By default, value is `300`.
 
 ### `ZBX_MEMORYLIMIT`
 
-The varable is PHP ``memory_limit`` option. By default, value is `128M`.
+The variable is PHP ``memory_limit`` option. By default, value is `128M`.
 
 ### `ZBX_POSTMAXSIZE`
 
-The varable is PHP ``post_max_size`` option. By default, value is `16M`.
+The variable is PHP ``post_max_size`` option. By default, value is `16M`.
 
 ### `ZBX_UPLOADMAXFILESIZE`
 
-The varable is PHP ``upload_max_filesize`` option. By default, value is `2M`.
+The variable is PHP ``upload_max_filesize`` option. By default, value is `2M`.
 
 ### `ZBX_MAXINPUTTIME`
 
-The varable is PHP ``max_input_time`` option. By default, value is `300`.
+The variable is PHP ``max_input_time`` option. By default, value is `300`.
 
 ### `ZBX_SESSION_NAME`
 
@@ -204,11 +204,11 @@ The variable allows to activate host verification. Available since 5.0.0.
 
 ### `ZBX_SSO_SP_KEY`
 
-The variable allows to specify a custom file path to the Serivce Provider (SP) private key file.
+The variable allows to specify a custom file path to the Service Provider (SP) private key file.
 
 ### `ZBX_SSO_SP_CERT`
 
-The variable allows to specify a custom file path to the Serivce Provider (SP) cert file.
+The variable allows to specify a custom file path to the Service Provider (SP) cert file.
 
 ### `ZBX_SSO_IDP_CERT`
 
@@ -240,6 +240,7 @@ Additionally the image allows to specify many other environment variables listed
 ZBX_VAULTDBPATH= # Available since 5.2.0
 ZBX_VAULTURL=https://127.0.0.1:8200 # Available since 5.2.0
 VAULT_TOKEN= # Available since 5.2.0
+ZBX_VAULTPREFIX= # Available since 7.0.0
 
 ZBX_SERVER_TLS_ACTIVE=false # Available since 7.4.0
 ZBX_SERVER_TLS_CAFILE= # Available since 7.4.0
@@ -268,13 +269,13 @@ WEB_REAL_IP_HEADER=
 
 ### ``/etc/ssl/nginx``
 
-The volume allows to enable HTTPS for the Zabbix web interface. The volume must contains three files ``ssl.crt``, ``ssl.key`` and ``dhparam.pem`` prepared for Nginx SSL connections.
+The volume allows to enable HTTPS for the Zabbix web interface. The volume must contain three files ``ssl.crt``, ``ssl.key`` and ``dhparam.pem`` prepared for Nginx SSL connections.
 
 Please follow official Nginx [documentation](http://nginx.org/en/docs/http/configuring_https_servers.html) to get more details about how to create certificate files.
 
 ### ``/etc/zabbix/web/certs``
 
-The volume allows to use custom certificates for SAML authentification. The volume must contains three files ``sp.key``, ``sp.crt`` and ``idp.crt``. Available since 5.0.0.
+The volume allows to use custom certificates for SAML authentication. The volume must contain three files ``sp.key``, ``sp.crt`` and ``idp.crt``. Available since 5.0.0.
 
 ### ``/var/lib/zabbix/enc``
 

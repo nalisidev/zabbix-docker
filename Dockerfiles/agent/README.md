@@ -14,7 +14,7 @@ Zabbix agent is deployed on a monitoring target to actively monitor local resour
 
 # Zabbix agent images
 
-These are the only official Zabbix agent Docker images. They are based on Alpine Linux v3.22, Ubuntu 24.04 (noble), CentOS Stream 10, Oracle Linux 10, Windows 10 LTSC 2019 and Windows 11 LTSC 2022 images. The available versions of Zabbix agent are:
+These are the only official Zabbix agent Docker images. They are based on Alpine Linux v3.23, Ubuntu 24.04 (noble), CentOS Stream 10, Oracle Linux 10, Windows 10 LTSC 2019 and Windows 11 LTSC 2022 images. The available versions of Zabbix agent are:
 
     Zabbix agent 6.0 (tags: alpine-6.0-latest, ubuntu-6.0-latest, ol-6.0-latest)
     Zabbix agent 6.0.* (tags: alpine-6.0.*, ubuntu-6.0.*, ol-6.0.*, ltsc2019-6.0.*, ltsc2022-6.0.*)
@@ -48,7 +48,7 @@ $ docker run --name some-zabbix-server --link some-zabbix-agent:zabbix-agent --i
 
 ## Connect to Zabbix server or Zabbix proxy containers (Active checks)
 
-This image supports perform active checks, so container linking makes Zabbix server and Zabbix proxy containers available to Zabbix agent instance. Start your application container like this in order to link Zabbix agent to Zabbix server or Zabbix proxy containterns:
+This image supports perform active checks, so container linking makes Zabbix server and Zabbix proxy containers available to Zabbix agent instance. Start your application container like this in order to link Zabbix agent to Zabbix server or Zabbix proxy containers:
 
 ```console
 $ docker run --name some-zabbix-agent --link some-zabbix-server:zabbix-server --init -d zabbix/zabbix-agent:latest

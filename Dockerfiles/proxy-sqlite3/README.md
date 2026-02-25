@@ -14,7 +14,7 @@ Zabbix proxy is a process that may collect monitoring data from one or more moni
 
 # Zabbix proxy images
 
-These are the only official Zabbix proxy Docker images. They are based on Alpine Linux v3.22, Ubuntu 24.04 (noble), CentOS Stream 10 and Oracle Linux 10 images. The available versions of Zabbix proxy are:
+These are the only official Zabbix proxy Docker images. They are based on Alpine Linux v3.23, Ubuntu 24.04 (noble), CentOS Stream 10 and Oracle Linux 10 images. The available versions of Zabbix proxy are:
 
     Zabbix proxy 6.0 (tags: alpine-6.0-latest, ubuntu-6.0-latest, ol-6.0-latest)
     Zabbix proxy 6.0.* (tags: alpine-6.0.*, ubuntu-6.0.*, ol-6.0.*)
@@ -229,7 +229,7 @@ The volume is used as location of public and private keys for SSH checks and act
 
 ### ``/var/lib/zabbix/ssl/certs``
 
-The volume is used as location of of SSL client certificate files for client authentication. It is `SSLCertLocation` parameter in ``zabbix_proxy.conf``.
+The volume is used as location of SSL client certificate files for client authentication. It is `SSLCertLocation` parameter in ``zabbix_proxy.conf``.
 
 ### ``/var/lib/zabbix/ssl/keys``
 
@@ -246,7 +246,7 @@ SNMP traps processing feature could be enabled using shared volume and switched 
 
 ### ``/var/lib/zabbix/mibs``
 
-The volume allows to add new MIB files. It does not support subdirectories, all MIBs must be placed to ``/var/lib/zabbix/mibs``.
+The volume allows to add new MIB files. It does not support subdirectories, all MIBs must be placed in ``/var/lib/zabbix/mibs``.
 
 # The image variants
 

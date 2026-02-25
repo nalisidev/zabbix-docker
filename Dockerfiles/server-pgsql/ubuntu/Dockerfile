@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 ARG OS_BASE_IMAGE=ubuntu:noble
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 ARG BUILD_BASE_IMAGE=zabbix-build-pgsql:ubuntu-${ZBX_VERSION}
 
 FROM ${BUILD_BASE_IMAGE} AS builder
@@ -59,6 +59,7 @@ RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked \
             traceroute \
             fping \
             openssl \
+            libcares2 \
             libcurl4t64 \
             libevent-2.1 \
             libevent-pthreads-2.1 \

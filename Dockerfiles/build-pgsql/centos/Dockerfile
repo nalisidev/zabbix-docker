@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 ARG BUILD_BASE_IMAGE=zabbix-build-base:centos-${ZBX_VERSION}
 
 FROM ${BUILD_BASE_IMAGE} AS builder
@@ -64,7 +64,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build/ \
         git -c advice.detachedHead=false clone ${ZBX_SOURCES} --branch ${GIT_BRANCH:-$ZBX_VERSION} --depth 1 --single-branch ${ZBX_SOURCES_DIR}; \
     fi && \
     cd ${ZBX_SOURCES_DIR} && \
-    for patch_filename in "/tmp/patches/*.patch"; do \
+    for patch_filename in /tmp/patches/*.patch; do \
         if [ -f "$patch_filename" ]; then \
             patch -p1 < "$patch_filename"; \
         fi \
@@ -85,9 +85,10 @@ RUN --mount=type=cache,target=/root/.cache/go-build/ \
             --enable-proxy \
             --enable-server \
             --enable-webservice \
+            --with-ares \
             --with-ldap \
             --with-libcurl \
-#            --with-libmodbus \
+            --with-libmodbus \
             --with-libpcre2 \
             --with-libxml2 \
             --with-${DB_TYPE} \
@@ -110,12 +111,11 @@ RUN --mount=type=cache,target=/root/.cache/go-build/ \
     cp -R ${ZBX_SOURCES_DIR}/database/postgresql/timescaledb/option-patches/with-compression/*.sql ${ZBX_OUTPUT_DIR}/server/database/${DB_TYPE}/option-patches/with-compression/ && \
     cp -R ${ZBX_SOURCES_DIR}/database/postgresql/timescaledb/option-patches/without-compression/*.sql ${ZBX_OUTPUT_DIR}/server/database/${DB_TYPE}/option-patches/without-compression/ && \
     mkdir /tmp/fonts/ && \
-    curl --tlsv1.2 -sSf -L "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip" -o /tmp/fonts/NotoSansCJKjp-hinted.zip && \
-    unzip /tmp/fonts/NotoSansCJKjp-hinted.zip -d /tmp/fonts/ && \
-    cp /tmp/fonts/NotoSansCJKjp-Regular.otf ${ZBX_SOURCES_DIR}/ui/assets/fonts/NotoSansCJKjp-Regular.ttf && \
-    cp /tmp/fonts/LICENSE_OFL.txt ${ZBX_SOURCES_DIR}/ui/assets/fonts/ && \
-    rm -f ${ZBX_SOURCES_DIR}/ui/assets/fonts/DejaVuSans.ttf && \
+    curl --tlsv1.2 -sSf -L "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf" -o ${ZBX_SOURCES_DIR}/ui/assets/fonts/NotoSansCJKjp-Regular.otf && \
+    curl --tlsv1.2 -sSf -L "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE" -o ${ZBX_SOURCES_DIR}/ui/assets/fonts/OFL.txt && \
     sed -i -r "s/(define\(.*_FONT_NAME.*)DejaVuSans/\1NotoSansCJKjp-Regular/" ${ZBX_SOURCES_DIR}/ui/include/defines.inc.php && \
+    sed -i -r "s/\.ttf/\.otf/" ${ZBX_SOURCES_DIR}/ui/include/graphs.inc.php && \
+    rm -f ${ZBX_SOURCES_DIR}/ui/assets/fonts/DejaVuSans.ttf && \
     rm -rf /tmp/fonts/ && \
     chmod o+r ${ZBX_SOURCES_DIR}/ui/assets/fonts/* && \
     strip ${ZBX_SOURCES_DIR}/src/zabbix_agent/zabbix_agentd && \

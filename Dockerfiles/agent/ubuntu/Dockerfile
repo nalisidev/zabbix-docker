@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 ARG OS_BASE_IMAGE=ubuntu:noble
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 ARG BUILD_BASE_IMAGE=zabbix-build-mysql:ubuntu-${ZBX_VERSION}
 
 FROM ${BUILD_BASE_IMAGE} AS builder
@@ -44,6 +44,7 @@ RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked \
             tzdata \
             iputils-ping \
             ca-certificates \
+            libcares2 \
             libssl3t64 \
             libcurl4t64 \
             libmodbus5 \

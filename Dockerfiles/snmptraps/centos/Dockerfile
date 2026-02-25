@@ -3,7 +3,7 @@ ARG OS_BASE_IMAGE=quay.io/centos/centos:stream10-minimal
 FROM ${OS_BASE_IMAGE}
 
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 ARG ZBX_SOURCES=https://git.zabbix.com/scm/zbx/zabbix.git
 
 ENV TERM=xterm \
@@ -61,7 +61,7 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
     chgrp -R 0 /etc/snmp/ ${ZABBIX_USER_HOME_DIR}/ /var/tmp/ /var/run/ && \
     chmod -R g=u /etc/snmp/ ${ZABBIX_USER_HOME_DIR}/ /var/tmp/ /var/run/
 
-EXPOSE 1162/UDP
+EXPOSE 1162/udp
 
 WORKDIR ${ZABBIX_USER_HOME_DIR}/snmptraps/
 
@@ -70,7 +70,8 @@ VOLUME ["${ZABBIX_USER_HOME_DIR}/snmptraps", "${SNMP_PERSISTENT_DIR}"]
 COPY ["conf/etc/logrotate.d/zabbix_snmptraps", "/etc/logrotate.d/"]
 COPY ["conf/etc/snmp/snmptrapd.conf", "/etc/snmp/"]
 COPY ["conf/usr/sbin/zabbix_trap_handler.sh", "/usr/sbin/"]
+COPY ["conf/usr/sbin/snmptrapd_runner.sh", "/usr/sbin/"]
 
 USER 1997
 
-CMD ["/usr/sbin/snmptrapd", "-n", "-t", "-X", "-C", "-c", "/etc/snmp/snmptrapd.conf", "-Lo", "-A", "--doNotFork=yes"]
+CMD ["/usr/sbin/snmptrapd_runner.sh"]

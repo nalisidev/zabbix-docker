@@ -3,7 +3,7 @@ ARG OS_BASE_IMAGE=ubuntu:noble
 FROM ${OS_BASE_IMAGE}
 
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 
 ENV TERM=xterm \
     ZBX_VERSION=${ZBX_VERSION} \
@@ -28,6 +28,7 @@ RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked \
             curl \
             gcc \
             libc6-dev \
+            libc-ares-dev \
             libcurl4-openssl-dev \
             libevent-dev \
             libmodbus-dev \

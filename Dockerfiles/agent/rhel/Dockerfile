@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
-ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.0
+ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.1
 ARG MAJOR_VERSION=7.4
-ARG RELEASE=2
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG RELEASE=7
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 ARG BUILD_BASE_IMAGE=zabbix-build-mysql:rhel-${ZBX_VERSION}
 
 FROM ${BUILD_BASE_IMAGE} AS builder
@@ -61,6 +61,7 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
     INSTALL_PKGS="bash \
             iputils \
             shadow-utils \
+            c-ares \
             pcre2 \
 #            libmodbus \
             libcurl-minimal \
@@ -69,10 +70,11 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
     curl --tlsv1.2 -sSf -L https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm -o /tmp/epel-release-latest-10.noarch.rpm && \
     rpm -ivh /tmp/epel-release-latest-10.noarch.rpm && \
     rm -rf /tmp/epel-release-latest-10.noarch.rpm && \
+    ARCH_SUFFIX="$(arch)"; \
     microdnf -y install \
-            --disableplugin=subscription-manager \
             --disablerepo "*" \
             --enablerepo "ubi-10-baseos-rpms" \
+            --enablerepo "rhel-10-for-$ARCH_SUFFIX-baseos-rpms" \
             --enablerepo "epel" \
             --setopt=install_weak_deps=0 \
             --setopt=keepcache=0 \

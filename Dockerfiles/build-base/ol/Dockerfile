@@ -3,7 +3,7 @@ ARG OS_BASE_IMAGE=container-registry.oracle.com/os/oraclelinux:10-slim
 FROM ${OS_BASE_IMAGE}
 
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 
 ENV TERM=xterm \
     ZBX_VERSION=${ZBX_VERSION} \
@@ -29,6 +29,7 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
             gcc \
             go-toolset \
             patch \
+            c-ares-devel \
             pcre2-devel \
             libcurl-devel \
             libevent-devel \

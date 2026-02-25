@@ -242,11 +242,11 @@ prepare_web_server() {
     WEB_REAL_IP_HEADER=$(escape_spec_char "$WEB_REAL_IP_HEADER")
 
     sed -i \
-        -e "s/{WEB_REAL_IP_FROM}/${WEB_REAL_IP_FROM}/g" \
+        -e "s#{WEB_REAL_IP_FROM}#${WEB_REAL_IP_FROM}#g" \
     "$ZABBIX_CONF_DIR/nginx.conf"
 
     sed -i \
-        -e "s/{WEB_REAL_IP_FROM}/${WEB_REAL_IP_FROM}/g" \
+        -e "s#{WEB_REAL_IP_FROM}#${WEB_REAL_IP_FROM}#g" \
     "$ZABBIX_CONF_DIR/nginx_ssl.conf"
 
     sed -i \
@@ -309,6 +309,7 @@ prepare_zbx_php_config() {
 
     export ZBX_VAULT=${ZBX_VAULT}
     export ZBX_VAULTURL=${ZBX_VAULTURL}
+    export ZBX_VAULTPREFIX=${ZBX_VAULTPREFIX}
     export ZBX_VAULTDBPATH=${ZBX_VAULTDBPATH}
     export VAULT_TOKEN=${VAULT_TOKEN}
     export ZBX_VAULTCERTFILE=${ZBX_VAULTCERTFILE}

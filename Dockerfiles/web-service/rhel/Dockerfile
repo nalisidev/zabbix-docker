@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
-ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.0
+ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.1
 ARG MAJOR_VERSION=7.4
-ARG RELEASE=2
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG RELEASE=7
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 ARG BUILD_BASE_IMAGE=zabbix-build-mysql:rhel-${ZBX_VERSION}
 
 FROM ${BUILD_BASE_IMAGE} AS builder
 
-ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.0
+ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.1
 FROM ${OS_BASE_IMAGE}
 
 ARG MAJOR_VERSION
@@ -68,6 +68,7 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
             --disablerepo "*" \
             --enablerepo "ubi-10-baseos-rpms" \
             --enablerepo "ubi-10-appstream-rpms" \
+            --enablerepo "rhel-10-for-$ARCH_SUFFIX-baseos-rpms" \
             --enablerepo "rhel-10-for-$ARCH_SUFFIX-appstream-rpms" \
             --enablerepo "epel" \
             --setopt=install_weak_deps=0 \

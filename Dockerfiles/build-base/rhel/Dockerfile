@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
-ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.0
+ARG OS_BASE_IMAGE=registry.access.redhat.com/ubi10/ubi-minimal:10.1
 FROM ${OS_BASE_IMAGE}
 
 ARG MAJOR_VERSION=7.4
-ARG RELEASE=2
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG RELEASE=7
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 
 ENV TERM=xterm \
     ZBX_VERSION=${ZBX_VERSION} \
@@ -41,6 +41,7 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
             gcc \
             go-toolset \
             patch \
+            c-ares-devel \
             pcre2-devel \
             libcurl-devel \
             libevent-devel \

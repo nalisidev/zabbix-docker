@@ -3,7 +3,7 @@ ARG OS_BASE_IMAGE=quay.io/centos/centos:stream10-minimal
 FROM ${OS_BASE_IMAGE}
 
 ARG MAJOR_VERSION=7.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.2
+ARG ZBX_VERSION=${MAJOR_VERSION}.7
 
 ENV TERM=xterm \
     ZBX_VERSION=${ZBX_VERSION} \
@@ -27,11 +27,12 @@ RUN --mount=type=tmpfs,target=/var/lib/dnf/ \
             bash \
             gcc \
             patch \
+            c-ares-devel \
             pcre2-devel \
             libcurl-devel \
             libevent-devel \
             libssh-devel \
-#            libmodbus-devel \
+            libmodbus-devel \
             libxml2-devel \
             openssl-devel \
             openldap-devel \
